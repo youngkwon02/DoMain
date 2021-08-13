@@ -7,6 +7,12 @@
 <link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
 <link rel="stylesheet" href="{% static 'css/mypage/profileNomalize.css' %}">
 
+<script>
+// 배경화면 자동제출
+document.getElementById("file").onchange = function() {
+document.getElementById("form").submit();
+};
+</script>
 {% endblock %}
 
 {% block contents %}
@@ -120,26 +126,24 @@
     <aside class="aside">
         <section class="section">
             <div class="profile-main">
+                
+                <a href="#">
+                <label for="file">
                 <button class="profile-main__setting focus--box-shadow" type="button">
-                <img class="profile-main__photo" id="target_img" src="{% static 'image/anna.jpg' %}" alt="Profile photo" />
-                {% comment %} <form name="profile-img-form" method="POST" action="/account/upload_profileimg/">
-                    {% csrf_token %}
-                    <input id="profile_image" type="file" style="display:none" name="profile_image">
-                    <input type="submit" value="upload">
-                </form> {% endcomment %}
-                <form method="POST" enctype="multipart/form-data">
-    <!-- 파일을 업로드할 때 form method는 POST여야하고 enctype을 multipart/form-data로 설정해야 한다. -->
-        {% csrf_token %}
-        {% bootstrap_form user_change_form %}
-        {% bootstrap_form profile_form %}
-        <button type="submit" class="btn btn-primary">수정</button>
-    </form>
+                <img src="{{profile.image.url}}" class="profile-main__photo" id="target_img" alt="no image">
                 </button>
-                 
-    
-    
+
+                </label>
+                <form method="POST" action="{%url 'mypage'%}" enctype="multipart/form-data">
+                {%csrf_token%}
+                <input type="file" id="file" name="image" onchange="form.submit()">
+                </form>
+                </a>
+
+                
                 <h1 class="profile-main__name">{{user.user_name}}</h1>
             </div>
+            
             <div class="banner">
                 <p class="banner__description">심플한 디자인을 좋아하는 웹개발자 입니다!</p>
 

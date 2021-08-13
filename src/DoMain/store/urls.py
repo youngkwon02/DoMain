@@ -1,5 +1,7 @@
 from django.urls import path, include
 from store.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', store_main, name='store_main'),
@@ -11,6 +13,4 @@ urlpatterns = [
     path('widget/download/', make_download, name="widget_download"),
     path('widget/show/reply/', reply_comment, name="reply_comment"),
     path('widget/reply/write/', make_reply, name="make_reply"),
-    path('upload_profileimg/', upload_profileimg),
-
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -113,3 +113,8 @@ class Reply(models.Model):
     content = models.CharField(max_length=300)
     time = models.DateTimeField(default=timezone.now)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+class Profile(models.Model):
+  user = models.OneToOneField(User_info, on_delete=models.CASCADE)
+  image = models.ImageField(upload_to = 'images/', default="image/defaultprofile.png", blank=True, null=True)
+

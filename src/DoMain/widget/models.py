@@ -29,3 +29,4 @@ class Layout(AbstractBaseWidget):
   image = models.ImageField(upload_to='layouts/', null=True, blank=True)
   is_widget = models.BooleanField(null=False, default=False)
   widget_type = models.TextField(null=True)
+

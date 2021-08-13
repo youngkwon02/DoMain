@@ -10,8 +10,7 @@ from datetime import datetime
 from store.models import WidgetType
 from widget.models import AbstractBaseWidget
 import json
-from .forms import ProfileForm
-from .models import User_info
+from store.models import Profile
 
 def landing_page(request):
     return render(request, 'landingPage.html')
@@ -204,20 +203,21 @@ def make_reply(request):
         }
         return HttpResponse(json.dumps(ret), content_type="application/json")
 
-def upload_profileimg(request):
-  	if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid():
-            profile_form.save()
-        return redirect('accounts:profile')
-    else:
-        # 새롭게 추가하는 것이 아니라 수정하는 것이기 때문에
-        # 기존의 정보를 가져오기 위해 instance를 지정해야 한다.
-        profile, create = User_info.objects.get_or_create(user=request.user)
-        # Profile 모델은 User 모델과 1:1 매칭이 되어있지만
-        # User 모델에 새로운 인스턴스가 생성된다고 해서 그에 매칭되는 Profile 인스턴스가 생성되는 것은 아니기 때문에
-        # 매칭되는 Profile 인스턴스가 있다면 그것을 가져오고, 아니면 새로 생성하도록 한다.
-        profile_form = ProfileForm(instance=profile)
-        return render(request, 'accounts/profile.html', {
-            'profile_form': profile_form
-        })
+def profile(request):
+    email= request.session['user_email']
+    user = User_info.objects.get(user_email=email)
+
+    profile_check=Profile.objects.filter(user=user).exists()
+    if profile_check==False:
+        profile=Profile()
+        profile.user=user
+        profile.save()
+        
+    if profile_check==True:
+        profile=Profile.objects.get(user=user)
+        if(request.method=='POST'):
+            if 'image' in request.FILES:
+                profile.image=request.FILES['image']
+                profile.save()
+
+    return render(request, 'myPage.html', {'profile':profile, 'user':user.user_name})
