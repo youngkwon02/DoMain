@@ -112,13 +112,25 @@
         </section>
 
 
+
     </main>
+
+
+    
     <aside class="aside">
         <section class="section">
             <div class="profile-main">
                 <button class="profile-main__setting focus--box-shadow" type="button">
-                    <img class="profile-main__photo" src="{% static 'image/anna.jpg' %}" alt="Profile photo" />
+                <img class="profile-main__photo" id="target_img" src="{% static 'image/anna.jpg' %}" alt="Profile photo" />
+                <form name="profile-img-form" method="POST" action="/account/upload_profileimg/">
+                    {% csrf_token %}
+                    <input id="profile_image" type="file" style="display:none" name="profile_image">
+                    <input type="submit" value="upload">
+                </form>
                 </button>
+                 
+    
+    
                 <h1 class="profile-main__name">{{user.user_name}}</h1>
             </div>
             <div class="banner">

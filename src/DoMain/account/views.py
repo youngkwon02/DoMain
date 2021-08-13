@@ -114,3 +114,6 @@ def get_user_inst(request):
     email = request.session['user_email']
     queryset = User_info.objects.filter(user_email = email)
     return queryset[0]
+
+def upload_profileimg(request):
+  request.POST['profile_image']

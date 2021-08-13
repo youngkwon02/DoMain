@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import EmailField
-
+from django_fields import DefaultStaticImageField
 
 class User_info(models.Model):
 
@@ -10,5 +10,6 @@ class User_info(models.Model):
   user_pwd = models.CharField(max_length = 512, verbose_name="user_pwd")
   register_date = models.DateTimeField(auto_now=True)
   is_active = models.BooleanField(default=False)
+  profile_image=models.ImageField(blank=True, null=True)
 
 
