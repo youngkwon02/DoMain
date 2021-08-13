@@ -128,7 +128,7 @@ document.getElementById("form").submit();
             <div class="profile-main">
                 
                 <a href="#">
-                <label for="file">
+                <label for="a-file">
                 <button class="profile-main__setting focus--box-shadow" type="button">
                 <img src="{{profile.image.url}}" class="profile-main__photo" id="target_img" alt="no image">
                 </button>
@@ -136,7 +136,7 @@ document.getElementById("form").submit();
                 </label>
                 <form method="POST" action="{%url 'mypage'%}" enctype="multipart/form-data">
                 {%csrf_token%}
-                <input type="file" id="file" name="image" onchange="form.submit()">
+                <input type="file" id="a-file" name="image" onchange="form.submit()">
                 </form>
                 </a>
 
