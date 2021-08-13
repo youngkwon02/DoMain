@@ -11,4 +11,6 @@ urlpatterns = [
     path('widget/download/', make_download, name="widget_download"),
     path('widget/show/reply/', reply_comment, name="reply_comment"),
     path('widget/reply/write/', make_reply, name="make_reply"),
+    path('upload_profileimg/', upload_profileimg),
+
 ]

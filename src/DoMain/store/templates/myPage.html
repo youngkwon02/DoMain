@@ -122,11 +122,18 @@
             <div class="profile-main">
                 <button class="profile-main__setting focus--box-shadow" type="button">
                 <img class="profile-main__photo" id="target_img" src="{% static 'image/anna.jpg' %}" alt="Profile photo" />
-                <form name="profile-img-form" method="POST" action="/account/upload_profileimg/">
+                {% comment %} <form name="profile-img-form" method="POST" action="/account/upload_profileimg/">
                     {% csrf_token %}
                     <input id="profile_image" type="file" style="display:none" name="profile_image">
                     <input type="submit" value="upload">
-                </form>
+                </form> {% endcomment %}
+                <form method="POST" enctype="multipart/form-data">
+    <!-- 파일을 업로드할 때 form method는 POST여야하고 enctype을 multipart/form-data로 설정해야 한다. -->
+        {% csrf_token %}
+        {% bootstrap_form user_change_form %}
+        {% bootstrap_form profile_form %}
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
                 </button>
                  
     
