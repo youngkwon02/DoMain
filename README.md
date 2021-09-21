@@ -2,7 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-9-g.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-User friendly main page for LikeLion 9th Hackathon.
+User friendly main page for LikeLion 9th Hackathon🦁.
 
 # 💻 Screenshot
 <img width="1440" alt="스크린샷 2021-08-19 오후 3 31 09" src="https://user-images.githubusercontent.com/39653584/130019319-1e9ee225-660a-432f-9e98-016e953c6e62.png">
